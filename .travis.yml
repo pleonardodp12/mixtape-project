@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+- stable
+branches:
+  only:
+  - master
+env:
+  - NODE_ENV=test
+install: npm install
+cache:
+  directories:
+    - node_modules
+script: npm test
+after_success:
+  - npm run coverage
+  - bash <(curl -s https://codecov.io/bash)
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: !!!!!!! travis encrypt 56428066-5e84-4d6f-b7fb-88187612dbd6 --add deploy.api_key !!!!!!
+#   app: SET APP HERE!!!!!!
+#   skip_cleanup: true
+#   on:
+#     branch: master
+
